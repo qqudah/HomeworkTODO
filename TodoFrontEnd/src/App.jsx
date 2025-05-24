@@ -1,14 +1,25 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-
+import ListTodoComponents from './components/ListTodoComponents'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import HeaderComponent from './components/HeaderComponent'
+import FooterComponent from './components/FooterComponent'
+import{BrowserRouter,Routes,Route} from 'react-router-dom'
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState([])
 
   return (
     <>
-    <h1>hi</h1>
+    <BrowserRouter>
+    <HeaderComponent />
+    <Routes>
+      <Route path="/" element={<ListTodoComponents />} />
+      <Route path="/todos" element={<ListTodoComponents />} />
+      
+    </Routes>
+  
+   <FooterComponent />
+    </BrowserRouter>
 
     </>
   )
