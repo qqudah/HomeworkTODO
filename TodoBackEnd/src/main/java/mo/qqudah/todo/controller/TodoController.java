@@ -17,32 +17,32 @@ public class TodoController {
 
     private TodoService todoService;
 
-    @PostMapping("add")
+    @PostMapping()
     public ResponseEntity<TodoDto> addTodo(@RequestBody TodoDto todoDto) {
         TodoDto savedTodo = todoService.addTodo(todoDto);
         return new ResponseEntity<>(savedTodo, HttpStatus.CREATED);
     }
 
-    @GetMapping("get/{id}")
+    @GetMapping("{id}")
     public ResponseEntity<TodoDto> getTodoById(@PathVariable("id") Long id) {
         TodoDto todoDto = todoService.getTodoById(id);
         return new ResponseEntity<>(todoDto, HttpStatus.OK);
     }
 
-    @GetMapping("get")
+    @GetMapping()
     public ResponseEntity<List<TodoDto>> getAllTodos() {
         List<TodoDto> todoDtos = todoService.getAllTodo();
         return new ResponseEntity<>(todoDtos, HttpStatus.OK);
     }
 
-    @PutMapping("update/{id}")
+    @PutMapping("{id}")
     public ResponseEntity<TodoDto> updateTodo(@RequestBody TodoDto todoDto, @PathVariable("id") Long id) {
         TodoDto updatedTodo = todoService.updateTodo(todoDto, id);
 
         return ResponseEntity.ok(updatedTodo);
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("{id}")
     public ResponseEntity<String> deleteTodo(@PathVariable("id") Long id) {
         todoService.deleteToDo(id);
         return ResponseEntity.ok("Task with Id " + id + " deleted successfully");
